@@ -24,6 +24,6 @@ class DataForOrder:
 }
 
 class Messages:
-    DUPLICATE_LOGIN_MESS ="Этот логин уже используется. Попробуйте другой."
-    NOT_ENOUGH_DATA = "Недостаточно данных для создания учетной записи"
-    NOT_ENOUGH_DATA_FOR_LOGIN = "Недостаточно данных для входа"
+    DUPLICATE_DATA_MESS = "User already exists"
+    NOT_ENOUGH_DATA_FOR_LOG = "email or password are incorrect"
+    NOT_ENOUGH_DATA_FOR_REG = "Email, password and name are required fields"

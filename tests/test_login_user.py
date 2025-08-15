@@ -1,5 +1,7 @@
 import allure
 import pytest
+
+from data import Messages
 from user_methods import UserMethods
 
 class TestLoginUser:
@@ -26,9 +28,6 @@ class TestLoginUser:
         ]
     )
     def test_login_wrong_credentials_param(self, new_user,  case_name, email_mod, password_mod):
-        """Проверка авторизации с различными неправильными комбинациями логина и пароля"""
-
-        # Берём правильные данные пользователя, созданного фикстурой
         email = email_mod if email_mod else new_user["email"]
         password = password_mod if password_mod else new_user["password"]
 
@@ -42,4 +41,4 @@ class TestLoginUser:
 
         with allure.step("Проверяем, что вернулась ошибка 401 и сообщение о неверных данных"):
             assert response.status_code == 401
-            assert response.json()["message"] == "email or password are incorrect"
+            assert response.json()["message"] == Messages.NOT_ENOUGH_DATA_FOR_LOG

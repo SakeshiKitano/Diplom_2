@@ -1,5 +1,6 @@
 from user_methods import UserMethods
 from generators import generate_user_data
+from data import Messages
 
 import allure
 import pytest
@@ -26,7 +27,7 @@ class TestCreateUser:
             response = UserMethods.create_user(new_user)
         with allure.step("Проверяем, что вернулась ошибка 403 и сообщение о существующем пользователе"):
             assert response.status_code == 403
-            assert response.json()["message"] == "User already exists"
+            assert response.json()["message"] == Messages.DUPLICATE_DATA_MESS
 
 
     @allure.epic("Регистрация пользователя")
@@ -39,4 +40,4 @@ class TestCreateUser:
             response = UserMethods.create_user(user_data)
         with allure.step("Проверяем, что вернулась ошибка 403 и сообщение о недостающих полях"):
             assert response.status_code == 403
-            assert response.json()["message"] == "Email, password and name are required fields"
+            assert response.json()["message"] == Messages.NOT_ENOUGH_DATA_FOR_REG
