@@ -16,7 +16,7 @@ class TestLoginUser:
             assert "accessToken" in response.json()
 
 
-
+    @staticmethod
     @allure.epic("Авторизация пользователя")
     @allure.title("Вход с неверными данными")
     @pytest.mark.parametrize(
@@ -27,16 +27,16 @@ class TestLoginUser:
             ("wrong@mail.com", "wrongpass", "Неверный e-mail и пароль")
         ]
     )
-    def test_login_wrong_credentials_param(self, new_user,  case_name, email_mod, password_mod):
-        email = email_mod if email_mod else new_user["email"]
-        password = password_mod if password_mod else new_user["password"]
+    def test_login_wrong_credentials_param(email_mod, password_mod, case_name, new_user):
+        email = email_mod or new_user["email"]
+        password = password_mod or new_user["password"]
 
         wrong_data = {
             "email": email,
             "password": password
         }
 
-        with allure.step(f"Отправляем запрос на авторизацию: {case_name}"):
+        with allure.step(f"Используем email={email} и password={password} для кейса: {case_name}"):
             response = UserMethods.login_user(wrong_data)
 
         with allure.step("Проверяем, что вернулась ошибка 401 и сообщение о неверных данных"):
