@@ -28,6 +28,7 @@ class TestCreateUser:
             assert response.status_code == 403
             assert response.json()["message"] == "User already exists"
 
+
     @allure.epic("Регистрация пользователя")
     @allure.title("Создание пользователя без обязательного поля")
     @pytest.mark.parametrize("missing_field", ["email", "password", "name"])

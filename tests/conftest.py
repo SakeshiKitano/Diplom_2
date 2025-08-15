@@ -5,18 +5,20 @@ from user_methods import UserMethods
 
 from data import ENDPOINTS
 
-# 1️⃣ Фикстура — создаёт нового пользователя (без логина)
-# Используется в тестах регистрации, чтобы проверить саму регистрацию.
+
 @pytest.fixture
 def new_user():
     user_data = generate_user_data()
     UserMethods.create_user(user_data)
-    return user_data
+
+    yield user_data
+
+    login_resp = UserMethods.login_user(user_data)
+    if login_resp.status_code == 200 and "accessToken" in login_resp.json():
+        token = login_resp.json()["accessToken"].split(" ")[1]
+        UserMethods.delete_user(token)
 
 
-# 2️⃣ Фикстура — создаёт нового пользователя и сразу логинится
-# Возвращает словарь с email, паролем и токеном.
-# Используется в тестах, где нужна авторизация (например, создание заказа с авторизацией).
 @pytest.fixture
 def auth_user():
     user_data = generate_user_data()
@@ -27,10 +29,8 @@ def auth_user():
     UserMethods.delete_user(user_data["access_token"])  # удаляем после теста
 
 
-# 3️⃣ Фикстура — логинит уже существующего пользователя
-# Используется в тестах логина, когда пользователь создан заранее.
-@pytest.fixture
+'''@pytest.fixture
 def login_existing_user():
     def _login(user_data):
         return UserMethods.login_user(user_data)
-    return _login
+    return _login'''
