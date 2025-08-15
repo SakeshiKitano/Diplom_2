@@ -37,7 +37,7 @@ class TestCreateOrder:
             response = OrderMethods.create_order(token=auth_user["access_token"], ingredients=[])
         with allure.step("Проверяем, что вернулась ошибка 400 и сообщение об обязательных ингредиентах"):
             assert response.status_code == 400
-            assert response.json()["message"] == "Ingredient ids must be provided"
+            assert response.json()["message"] == Messages.NO_INGREDIENTS
 
     @allure.epic("Создание заказа")
     @allure.title("Создание заказа с неверным хешем ингредиента")
