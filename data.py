@@ -1,10 +1,12 @@
 
-BASE_URL = 'https://stellarburgers.nomoreparties.site'
+BASE_URL = 'https://stellarburgers.nomoreparties.site/api'
 ENDPOINTS = {
-        'CREATE_USER_URL': '/api/auth/register',
-        'LOGIN_USER_URL': '/api/auth/login',
-        'CREATE_ORDER_URL': '/api/orders',
-    }
+    "register_user": f"{BASE_URL}/auth/register",
+    "login": f"{BASE_URL}/auth/login",
+    "user": f"{BASE_URL}/auth/user",
+    "orders": f"{BASE_URL}/orders",
+    "ingredients": f"{BASE_URL}/ingredients"
+}
 
 
 
