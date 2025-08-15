@@ -28,9 +28,3 @@ def auth_user():
     yield user_data
     UserMethods.delete_user(user_data["access_token"])  # удаляем после теста
 
-
-'''@pytest.fixture
-def login_existing_user():
-    def _login(user_data):
-        return UserMethods.login_user(user_data)
-    return _login'''
