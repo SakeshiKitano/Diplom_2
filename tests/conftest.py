@@ -3,8 +3,6 @@ import requests
 from generators import generate_user_data
 from user_methods import UserMethods
 
-from data import ENDPOINTS
-
 
 @pytest.fixture
 def new_user():

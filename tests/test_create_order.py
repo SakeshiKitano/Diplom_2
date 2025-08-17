@@ -1,8 +1,6 @@
 import allure
-import pytest
 
 from data import Messages
-from user_methods import UserMethods
 from order_methods import OrderMethods
 
 class TestCreateOrder:
