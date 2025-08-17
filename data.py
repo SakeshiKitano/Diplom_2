@@ -7,7 +7,11 @@ ENDPOINTS = {
     "orders": f"{BASE_URL}/orders",
     "ingredients": f"{BASE_URL}/ingredients"
 }
-
+login_wrong_credentials_param = [
+            ("wrong@mail.com", None, "Неверный e-mail"),
+            (None, "wrongpass", "Неверный пароль"),
+            ("wrong@mail.com", "wrongpass", "Неверный e-mail и пароль")
+        ]
 
 
 class Messages:
@@ -15,3 +19,5 @@ class Messages:
     NOT_ENOUGH_DATA_FOR_LOG = "email or password are incorrect"
     NOT_ENOUGH_DATA_FOR_REG = "Email, password and name are required fields"
     NO_INGREDIENTS = "Ingredient ids must be provided"
+
+

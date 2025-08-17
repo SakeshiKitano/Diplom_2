@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from data import Messages
+from data import Messages, login_wrong_credentials_param
 from user_methods import UserMethods
 
 class TestLoginUser:
@@ -21,11 +21,7 @@ class TestLoginUser:
     @allure.title("Вход с неверными данными")
     @pytest.mark.parametrize(
         "email_mod,password_mod,case_name",
-        [
-            ("wrong@mail.com", None, "Неверный e-mail"),
-            (None, "wrongpass", "Неверный пароль"),
-            ("wrong@mail.com", "wrongpass", "Неверный e-mail и пароль")
-        ]
+        login_wrong_credentials_param
     )
     def test_login_wrong_credentials_param(email_mod, password_mod, case_name, new_user):
         email = email_mod or new_user["email"]
